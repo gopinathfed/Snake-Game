@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=EB+Garamond&family=PT+Serif:ital@1&display=swap');
+
+/* Variable declaration */
+
+:root{
+    --BG-COLOR: #084C61;
+    --TEXT-COLOR: #fff;
+    --SHADOW-COLOR: #000;
+    --FONT-SIZE:3.5rem;
+}
+
+/* Reset default units and add font style*/
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight:1000;
+}
+
+/* set background color and text color for entire page */
+body{
+    background:var(--BG-COLOR);
+    color:var(--TEXT-COLOR);
+}
+
+/* design the header area */
+.heading{
+    text-align: center;
+    font-size: 3.5rem;
+    text-shadow: 2px 5px 5px var(--SHADOW-COLOR)
+}
+
+/* design the score area */
+.score{
+    text-align: center;
+    font-size: var(--FONT-SIZE);
+    text-shadow: 2px 4px 5px var(--SHADOW-COLOR);
+    position:absolute;
+    bottom:5%;
+    left:50%;
+    transform:translateX(-50%)
+}
+ /* Design the Game Board*/
+
+ .game-board{
+    box-sizing: content-box;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    margin: 2rem auto;
+    border: 10px solid #E3B505
+ }
