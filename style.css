@@ -51,3 +51,56 @@ body{
     margin: 2rem auto;
     border: 10px solid #E3B505
  }
+
+ /* Design all buttons */
+
+ .buttons {
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    display: grid;
+    place-items: center;
+    grid-template-areas:
+        "up up rgt"
+        "lft no rgt"
+        "lft dwn dwn";
+    grid-template-columns: repeat(3, 70px);
+    grid-template-rows: repeat(3, 70px);
+}
+.button{
+    display: grid;
+    place-items: center;
+    background:#4F6D7F;
+    width:90%;
+    height: 90%;
+    box-shadow: .5px .5px .5px #E3B505;
+    border-radius: 50px;
+    color:#000;
+    font-size: 1.2rem;
+    font-weight: 1000;
+    user-select: none;
+}
+
+.button:hover{
+    background:rgba(79, 109, 127, 0.800);
+    cursor:pointer;
+}
+.button:active,.button:focus{
+    scale: 90%;
+}
+.up {
+    grid-area: up;
+}
+
+.left {
+    grid-area: lft;
+}
+
+.right {
+    grid-area: rgt;
+}
+
+.down {
+    grid-area: dwn;
+}
