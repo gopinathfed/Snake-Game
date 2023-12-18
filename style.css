@@ -22,6 +22,7 @@
 body{
     background:var(--BG-COLOR);
     color:var(--TEXT-COLOR);
+    user-select: none;
 }
 
 /* design the header area */
@@ -63,7 +64,7 @@ body{
     place-items: center;
     grid-template-areas:
         "up up rgt"
-        "lft no rgt"
+        "lft str rgt"
         "lft dwn dwn";
     grid-template-columns: repeat(3, 70px);
     grid-template-rows: repeat(3, 70px);
@@ -74,12 +75,23 @@ body{
     background:#4F6D7F;
     width:90%;
     height: 90%;
-    box-shadow: .5px .5px .5px #E3B505;
+    box-shadow: .5px .5px .5px var(--SHADOW-COLOR);
     border-radius: 50px;
     color:#000;
     font-size: 1.2rem;
     font-weight: 1000;
     user-select: none;
+}
+.start{
+    grid-area: str; /* str = start button*/
+    font-size: 4rem;
+}
+
+.center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    translate: -50% -60%;
 }
 
 .button:hover{
