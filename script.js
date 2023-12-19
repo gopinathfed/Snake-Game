@@ -23,6 +23,9 @@ let xDirection = UNIT;
 
 let gameStart = false;
 
+
+let foodX,foodY;
+
 let snake = [
     {x:0,y:0},
     {x:0,y:0},
@@ -82,9 +85,12 @@ function drawSnakeRepeatedly(){
     if(gameStart){
         setTimeout(()=>{
             resetBoard();
-            drawSnake();
             moveSnake();
+            displayFood(foodX,foodY);
+            growSnakeWhenEatFood();
+            drawSnake();
             drawSnakeRepeatedly();
+            console.log(snake)
         },200);
     }
 }
@@ -94,10 +100,33 @@ function gameOver(){
         snake[snake.length-1].y>=canvasHeight ||
         snake[snake.length-1].y<0 ){
             gameStart = false;
+            resetBoard();
+            context.fillStyle = "black";
+            context.font = "63px serif";
+            context.fillText("Game Over",0,canvasHeight/2); 
         }
 }
 
 function startGame(){
     drawSnake();
     drawSnakeRepeatedly();
+    createFood();
+}
+
+function createFood(){
+    foodX = Math.floor(Math.random()*(canvasWidth/15))*(canvasWidth/20);
+    foodY = Math.floor(Math.random()*(canvasWidth/15))*(canvasWidth/20);
+}   
+
+function displayFood(foodXDir,foodYDir){
+    context.fillStyle = "#001242";
+    context.fillRect(foodXDir,foodYDir,UNIT,UNIT);
+};
+
+function growSnakeWhenEatFood(){
+    if(foodX==snake[snake.length-1].x && foodY==snake[snake.length-1].y ){
+        snake.unshift({x:foodX,y:foodY});
+        createFood();
+        displayFood();
+    }
 }
