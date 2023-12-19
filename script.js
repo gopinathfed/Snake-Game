@@ -102,8 +102,11 @@ function gameOver(){
             gameStart = false;
             resetBoard();
             context.fillStyle = "black";
-            context.font = "63px serif";
-            context.fillText("Game Over",0,canvasHeight/2); 
+            context.font = "3rem serif";
+            let fontSize = 40;
+            let x = (canvas.width - context.measureText("Game Over").width) / 2;
+            let y = (canvas.height + fontSize) / 2;
+            context.fillText("Game Over",x,y); 
         }
 }
 
