@@ -78,8 +78,8 @@ function moveSnake(){
 }
 
 function drawSnakeRepeatedly(){
+    gameOver();
     if(gameStart){
-        gameOver();
         setTimeout(()=>{
             resetBoard();
             drawSnake();
