@@ -26,35 +26,73 @@ let gameStart = false;
 
 let foodX,foodY;
 
-let snake = [
-    {x:0,y:0},
-    {x:0,y:0},
-    {x:0,y:0},
-    {x:0,y:0},
-    {x:0,y:0},
-    {x:0,y:0}
+let reset = true;
+
+let snake = [ 
+    {x:-15,y:-15},
+    {x:-15,y:-15},
+    {x:-15,y:-15},
+    {x:-15,y:-15},
+    {x:-15,y:-15},
+    {x:canvasWidth/2,y:canvasHeight/2}
 ];
 
 startKey.addEventListener('click',()=>{
-    gameStart = true;
-    startGame();
+    if(!gameStart){
+        snake = [ 
+            {x:-15,y:-15},
+            {x:-15,y:-15},
+            {x:-15,y:-15},
+            {x:-15,y:-15},
+            {x:-15,y:-15},
+            {x:canvasWidth/2,y:canvasHeight/2}
+        ];
+        reset = true;
+        gameStart = true;
+        resetBoard();
+        startGame();
+    }
 });
 
 upKey.addEventListener('click',()=>{
-    xDirection = 0 ;
-    yDirection = -UNIT;
+    if(!gameStart){
+        gameStart = true;
+        startGame();
+    }
+    if(yDirection != UNIT){
+        xDirection = 0 ;
+        yDirection = -UNIT;
+    }
 })
 downKey.addEventListener('click',()=>{
-    xDirection = 0;
-    yDirection = UNIT;
+    if(!gameStart){
+        gameStart = true;
+        startGame();
+    }
+    if(yDirection != -UNIT){
+        xDirection = 0;
+        yDirection = UNIT;
+    }
 })
 leftKey.addEventListener('click',()=>{
-    xDirection = -UNIT;
-    yDirection = 0;
+    if(!gameStart){
+        gameStart = true;
+        startGame();
+    }
+    if(xDirection != UNIT){
+        xDirection = -UNIT;
+        yDirection = 0;
+    }
 })
 rightKey.addEventListener('click',()=>{
-    xDirection = UNIT;
-    yDirection = 0;
+    if(!gameStart){
+        gameStart = true;
+        startGame();
+    }
+    if(xDirection != -UNIT){
+        xDirection = UNIT;
+        yDirection = 0;
+    }
 })
 
 resetBoard();
@@ -72,7 +110,7 @@ function resetBoard(){
 }
 
 function moveSnake(){
-    snakeHead = {
+    let snakeHead = {
         x:snake[snake.length-1].x+xDirection,
         y:snake[snake.length-1].y+yDirection
     }
@@ -81,39 +119,38 @@ function moveSnake(){
 }
 
 function drawSnakeRepeatedly(){
-    gameOver();
+    gameOverWhenSnakeTouchWall();
     if(gameStart){
         setTimeout(()=>{
-            resetBoard();
-            moveSnake();
-            displayFood(foodX,foodY);
-            growSnakeWhenEatFood();
-            drawSnake();
-            drawSnakeRepeatedly();
-            console.log(snake)
+            if(reset){
+                resetBoard();
+                moveSnake();
+                gameOverWhenSnakeTouchItsBody();
+                growSnakeWhenEatFood();
+                displayFood(foodX,foodY);
+                drawSnake();
+                drawSnakeRepeatedly();
+                if(!reset){
+                    gameOver();
+            }
+            }
         },200);
     }
 }
-function gameOver(){
+function gameOverWhenSnakeTouchWall(){
     if( snake[snake.length-1].x>=canvasWidth ||
         snake[snake.length-1].x<0 ||
         snake[snake.length-1].y>=canvasHeight ||
         snake[snake.length-1].y<0 ){
-            gameStart = false;
-            resetBoard();
-            context.fillStyle = "black";
-            context.font = "3rem serif";
-            let fontSize = 40;
-            let x = (canvas.width - context.measureText("Game Over").width) / 2;
-            let y = (canvas.height + fontSize) / 2;
-            context.fillText("Game Over",x,y); 
+           gameOver();
         }
 }
 
 function startGame(){
     drawSnake();
-    drawSnakeRepeatedly();
     createFood();
+    displayFood();
+    drawSnakeRepeatedly();
 }
 
 function createFood(){
@@ -132,4 +169,29 @@ function growSnakeWhenEatFood(){
         createFood();
         displayFood();
     }
+}
+
+function gameOverWhenSnakeTouchItsBody(){
+    snake.forEach((snakeBody)=>{
+        if( snakeBody != snake[snake.length-1]){
+            if(
+                snake[snake.length-1].x == snakeBody.x &&
+                snake[snake.length-1].y == snakeBody.y
+                ){
+                    gameOver();
+            }
+        }
+    })
+}
+
+function gameOver(){
+    reset = false;
+    gameStart = false;
+    resetBoard();
+    context.fillStyle = "black";
+    context.font = "3rem serif";
+    let fontSize = 40;
+    let x = (canvas.width - context.measureText("Game Over").width) / 2;
+    let y = (canvas.height + fontSize) / 2;
+    context.fillText("Game Over",x,y); 
 }

@@ -68,21 +68,23 @@ body {
     grid-template-columns: repeat(3, 70px);
     grid-template-rows: repeat(3, 70px);
 }
+
 .button {
     display: grid;
     background:#4F6D7F;
     border-radius: 50px;
     box-shadow: .5px .5px .5px var(--SHADOW-COLOR);
     color:#000;
-    font-size: 1.2rem;
+    font-size: 3rem;
     font-weight: 1000;
     height: 90%;
     place-items: center;
     user-select: none;
     width: 90%;
 }
+
 .start {
-    font-size: 4rem;
+    font-size: 3rem;
     grid-area: str; /* str = start button*/
 }
 
@@ -90,7 +92,7 @@ body {
     position: absolute;
     left: 50%;
     top :50%;
-    translate: -50% -60%;
+    translate: -50% -50%;
 }
 
 .button:hover {
@@ -104,8 +106,16 @@ body {
     grid-area: up;
 }
 
+.up > span {
+    transform: rotate(-90deg);
+}
+
 .left {
     grid-area: lft;
+}
+
+.left > span {
+    transform: rotate(180deg);
 }
 
 .right {
@@ -114,4 +124,8 @@ body {
 
 .down {
     grid-area: dwn;
+}
+
+.down > span {
+    transform: rotate(90deg);
 }
