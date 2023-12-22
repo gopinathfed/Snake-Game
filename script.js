@@ -37,7 +37,7 @@ let snake = [
     {x:canvasWidth/2,y:canvasHeight/2}
 ];
 
-startKey.addEventListener('click',()=>{
+function playAgain(){
     if(!gameStart){
         snake = [ 
             {x:-15,y:-15},
@@ -52,6 +52,10 @@ startKey.addEventListener('click',()=>{
         resetBoard();
         startGame();
     }
+}
+
+startKey.addEventListener('click',()=>{
+   playAgain();
 });
 
 upKey.addEventListener('click',()=>{
@@ -92,6 +96,62 @@ rightKey.addEventListener('click',()=>{
     if(xDirection != -UNIT){
         xDirection = UNIT;
         yDirection = 0;
+    }
+})
+
+window.addEventListener('keydown',(event)=>{
+    switch(event.key){
+        case 'w':
+        case 'W':
+        case 'ArrowUp':
+            if(!gameStart){
+                gameStart = true;
+                startGame();
+            }
+            if(yDirection != UNIT){
+                xDirection = 0 ;
+                yDirection = -UNIT;
+            }
+            break;
+        case 's':
+        case 'S':
+        case 'ArrowDown':
+            if(!gameStart){
+                gameStart = true;
+                startGame();
+            }
+            if(yDirection != -UNIT){
+                xDirection = 0;
+                yDirection = UNIT;
+            }
+            break;
+        case 'a':
+        case 'A':
+        case 'ArrowLeft':
+            if(!gameStart){
+                gameStart = true;
+                startGame();
+            }
+            if(xDirection != UNIT){
+                xDirection = -UNIT;
+                yDirection = 0;
+            }
+        break;
+        case 'd':
+        case 'D':
+        case 'ArrowRight':
+            if(!gameStart){
+                gameStart = true;
+                startGame();
+            }
+            if(xDirection != -UNIT){
+                xDirection = UNIT;
+                yDirection = 0;
+            }
+            break;
+        case 'Enter':
+            playAgain();
+            break;
     }
 })
 
