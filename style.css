@@ -2,66 +2,65 @@
 
 /* Variable declaration */
 
-:root{
+:root {
     --BG-COLOR: #084C61;
-    --TEXT-COLOR: #fff;
+    --FONT-SIZE: 3.5rem;
     --SHADOW-COLOR: #000;
-    --FONT-SIZE:3.5rem;
+    --TEXT-COLOR: #fff;
 }
 
 /* Reset default units and add font style*/
-*{
-    padding:0;
-    margin:0;
+* {
     box-sizing: border-box;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight:1000;
+    margin: 0;
+    padding: 0;
 }
 
 /* set background color and text color for entire page */
-body{
-    background:var(--BG-COLOR);
-    color:var(--TEXT-COLOR);
+body {
+    background: var(--BG-COLOR);
+    color: var(--TEXT-COLOR);
+    font-family: 'Cormorant Garamond', serif;
     user-select: none;
 }
 
-/* design the header area */
-.heading{
-    text-align: center;
+/* Header Section */
+.heading {
     font-size: 3.5rem;
+    text-align: center;
     text-shadow: 2px 5px 5px var(--SHADOW-COLOR)
 }
 
-/* design the score area */
-.score{
-    text-align: center;
+/* Display Score*/
+.score {
+    bottom: 5%;
     font-size: var(--FONT-SIZE);
-    text-shadow: 2px 4px 5px var(--SHADOW-COLOR);
-    position:absolute;
-    bottom:5%;
-    left:50%;
-    transform:translateX(-50%)
-}
- /* Design the Game Board*/
-
- .game-board{
-    box-sizing: content-box;
+    left: 50%;
     position: absolute;
-    left:50%;
-    transform: translateX(-50%);
+    text-align: center;
+    text-shadow: 2px 4px 5px var(--SHADOW-COLOR);
+    transform: translateX(-50%)
+}
+ /* Decorate the Game Board*/
+
+ .game-board {
+    position: absolute;
+    border: 10px solid #E3B505;
+    box-sizing: content-box;
+    left: 50%;
     margin: 2rem auto;
-    border: 10px solid #E3B505
+    transform: translateX(-50%);
  }
 
- /* Design all buttons */
+ /* button section */
 
  .buttons {
     position: absolute;
     left: 50%;
     bottom: 10%;
-    transform: translateX(-50%);
     display: grid;
     place-items: center;
+    transform: translateX(-50%);
     grid-template-areas:
         "up up rgt"
         "lft str rgt"
@@ -69,36 +68,36 @@ body{
     grid-template-columns: repeat(3, 70px);
     grid-template-rows: repeat(3, 70px);
 }
-.button{
+.button {
     display: grid;
-    place-items: center;
     background:#4F6D7F;
-    width:90%;
-    height: 90%;
-    box-shadow: .5px .5px .5px var(--SHADOW-COLOR);
     border-radius: 50px;
+    box-shadow: .5px .5px .5px var(--SHADOW-COLOR);
     color:#000;
     font-size: 1.2rem;
     font-weight: 1000;
+    height: 90%;
+    place-items: center;
     user-select: none;
+    width: 90%;
 }
-.start{
-    grid-area: str; /* str = start button*/
+.start {
     font-size: 4rem;
+    grid-area: str; /* str = start button*/
 }
 
-.center{
+.center {
     position: absolute;
-    top:50%;
-    left:50%;
+    left: 50%;
+    top :50%;
     translate: -50% -60%;
 }
 
-.button:hover{
+.button:hover {
     background:rgba(79, 109, 127, 0.800);
-    cursor:pointer;
+    cursor: pointer;
 }
-.button:active,.button:focus{
+.button:active,.button:focus {
     scale: 90%;
 }
 .up {
