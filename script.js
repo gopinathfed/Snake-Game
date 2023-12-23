@@ -6,8 +6,16 @@ const downKey = document.querySelector('.down');
 const leftKey = document.querySelector('.left');
 const rightKey = document.querySelector('.right');
 const startKey = document.querySelector('.start');
+const startKey2 = document.querySelector('.start2');
+const homeButton = document.querySelector('.homebutton');
 
-const canvasWidth = canvas.width; 
+const score = document.querySelector('.show-score');
+const score2 = document.querySelector('.show-score2');
+const playButton = document.querySelector('.play');
+const home = document.getElementById('home');
+const displayGameOver = document.querySelector('.displaygameover')
+
+const canvasWidth = canvas.width;
 const canvasHeight = canvas.height; 
 
 const snakeWidth = canvasWidth / 20;
@@ -15,17 +23,13 @@ const snakeHeight = canvasHeight / 20;
 
 let UNIT = canvasHeight / 20; // UNIT = 15 
 
-let xAxis = UNIT;
-let yAxis = 0;
+let scoreValue = 0;
 
 let yDirection = 0;
 let xDirection = UNIT;
 
 let gameStart = false;
-
-
 let foodX,foodY;
-
 let reset = true;
 
 let snake = [ 
@@ -51,11 +55,27 @@ function playAgain(){
         gameStart = true;
         resetBoard();
         startGame();
+        scoreValue = 0;
+        score.textContent = scoreValue;
     }
 }
 
+homeButton.addEventListener('click',()=>{
+    home.style.display = 'flex';
+    displayGameOver.style.display = 'none';
+
+})
+playButton.addEventListener('click',()=>{
+    home.style.display = 'none';
+})
+
 startKey.addEventListener('click',()=>{
+    displayGameOver.style.display = 'none';
    playAgain();
+});
+
+startKey2.addEventListener('click',()=>{
+    displayGameOver.style.display = 'none';
 });
 
 upKey.addEventListener('click',()=>{
@@ -216,6 +236,7 @@ function startGame(){
 function createFood(){
     foodX = Math.floor(Math.random()*(canvasWidth/15))*(canvasWidth/20);
     foodY = Math.floor(Math.random()*(canvasWidth/15))*(canvasWidth/20);
+    increaseScore();
 }   
 
 function displayFood(foodXDir,foodYDir){
@@ -245,6 +266,8 @@ function gameOverWhenSnakeTouchItsBody(){
 }
 
 function gameOver(){
+    displayGameOver.style.display = 'block';
+    score2.textContent = scoreValue;
     reset = false;
     gameStart = false;
     resetBoard();
@@ -254,4 +277,9 @@ function gameOver(){
     let x = (canvas.width - context.measureText("Game Over").width) / 2;
     let y = (canvas.height + fontSize) / 2;
     context.fillText("Game Over",x,y); 
+}
+
+function increaseScore(){
+    scoreValue += 20;
+    score.textContent = scoreValue;
 }

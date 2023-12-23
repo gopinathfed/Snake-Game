@@ -16,19 +16,43 @@
         <h1 class="heading">Snake Game</h1>
     </header>
     <main>
-        <canvas width="300" height="300" class="game-board" id="board">
-        </canvas>
-        <section class="buttons">
-            <div class="button up"><span>➯</span></div>
-            <div class="button down"><span>➯</span></div>
-            <div class="button start" title="Press Enter key for Reset"><span class="center">↻</span></div>
-            <div class="button left"><span>➯</span></div>
-            <div class="button right"><span>➯</span></div>
+        <div class="board-buttons">
+            <div>
+                <p class="score">Score : <span class="show-score">0</span></p>
+            </div>
+            <section>
+                <canvas width="300" height="300" class="game-board" id="board"></canvas>
+            </section>
+            <section class="buttons">
+                <div class="button up"><span>➯</span></div>
+                <div class="button down"><span>➯</span></div>
+                <div class="button start" title="Press Enter key for Reset"><span class="center">↻</span></div>
+                <div class="button left"><span>➯</span></div>
+                <div class="button right"><span>➯</span></div>
+            </section>
+        </div>
+        <section class="home" id="home">
+            <div class="no-wrap">
+                <label for="speed">Select Speed :</label>
+                <select name="speed" id="speed" class="speed">
+                    <option value="100">Hard</option>
+                    <option value="200" selected>Normal</option>
+                    <option value="300">Easy</option>
+                </select>
+                </div>
+                <div>
+                    <button id="play" class="play">Play</button>
+                </div>
         </section>
-        
-       <!--  <div>
-            <p class="score">Score : <span class="show-score">0</span></p>
-        </div> -->
+        <section class="displaygameover">
+            <div>
+                <p class="score black">Score : <span class="show-score2">0</span></p>
+            </div>
+            <div class="centerbutton">
+                <button class="gameover start2">X</button>
+                <button class="gameover homebutton">🏠</button>
+            </div>
+        </section>
     </main>
 </body>
 </html>
