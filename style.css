@@ -3,10 +3,10 @@
 /* Variable declaration */
 
 :root {
-    --BG-COLOR: #084C61;
+    --BG-COLOR: hsl(194, 85%, 21%);
     --FONT-SIZE: 3.5rem;
-    --SHADOW-COLOR: #000;
-    --TEXT-COLOR: #fff;
+    --SHADOW-COLOR: #ffffff;
+    --TEXT-COLOR: #000;
 }
 
 /* Reset default units*/
@@ -16,216 +16,242 @@
     padding: 0;
 }
 
-/* set background color and text color for entire page and add font style*/
-body {
+html {
     background: var(--BG-COLOR);
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* set background color and text color for entire page and add font style*/
+
+body {
+    background: hsl(198, 100%, 50%);
+    background-image: url(./img/3d-render-modern-tech-background-with-extruding-cubes\ \(1\).jpg);
+    background-size: cover;
     color: var(--TEXT-COLOR);
-    min-width: 100vw;
+    width: 360px;
     font-family: 'Cormorant Garamond', serif;
     user-select: none;
-    max-height: 100vh;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+}
+
+.game-board {
+    width: 360px;
+    height: 360px;
+    margin: auto;
+    border: .2px solid black;
+    box-shadow: .02px .02px 100px rgba(0, 0, 0, 0.66);
+    background-color: rgb(0, 213, 255);
 }
 
 /* Header Section */
+
 .heading {
-    font-size: 3.5rem;
+    background: none;
     text-align: center;
-    text-shadow: 2px 5px 5px var(--SHADOW-COLOR)
+    text-shadow: -1px 0 .9px var(--SHADOW-COLOR);
+}
+
+.heading h1 {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 3rem;
+    transform: perspective(500px) rotateY(20deg);
+}
+
+.buttons {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    left: 35%;
+    top: 65%;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: repeat(2, 50px);
+    transform-origin: center;
+    transform: rotateZ(45deg);
+    gap: 20px;
+}
+
+.button {
+    background-color: #00000043;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+}
+
+.button:hover {
+    background: #00000032;
+    cursor: pointer;
+}
+
+.button div {
+    width: 20px;
+    height: 20px;
+    background: white;
+}
+
+.start {
+    position: absolute;
+    left: 20px;
+    font-size: 2rem;
+    font-weight: 1000;
+    color: #fff;
+}
+
+.up > div {
+    clip-path: polygon(0 0,0 100%,50% 100%,50% 50%,100% 50%,100% 0);
+}
+
+.down > div {
+    clip-path: polygon(0 0,0 100%,50% 100%,50% 50%,100% 50%,100% 0);
+    transform: rotate(180deg);
+}
+
+.right > div {
+    clip-path: polygon(0 0,0 100%,50% 100%,50% 50%,100% 50%,100% 0);
+    transform: rotate(90deg);
+}
+
+.left > div {
+    clip-path: polygon(0 0,0 100%,50% 100%,50% 50%,100% 50%,100% 0);
+    transform: rotate(-90deg);
 }
 
 /* Display Score*/
 .score {
-    /* bottom: 5%; */
-    font-size: var(--FONT-SIZE);
-    /* left: 50%;
-    position: absolute; */
-    text-align: center;
-    text-shadow: 2px 4px 5px var(--SHADOW-COLOR);
-    /* transform: translateX(-50%) */
+    font-size: 2rem;
+    background: rgba(0, 0, 0, 0.151);
+    position: absolute; 
+    right: 5px;
+    text-shadow: .2px .4px .5px black;
+    color: #ffffff;
 }
- /* Decorate the Game Board*/
-
- .board-buttons{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
- }
-
- .game-board {
-    /* position: absolute; */
-    border: 10px solid #E3B505;
-    box-sizing: content-box;
-    /* left: 50%; */
-    margin: 1rem auto;
-    /* transform: translateX(-50%); */
- }
-
- /* button section */
-
- .buttons {
-    /* position: absolute;
-    left: 50%;
-    bottom: 10%; */
-    display: grid;
-    place-items: center;
-    /* transform: translateX(-50%); */
-    grid-template-areas:
-        "up   up   rgt"
-        "lft  str  rgt"
-        "lft  dwn  dwn";
-    grid-template-columns: repeat(3, 70px);
-    grid-template-rows: repeat(3, 70px);
-}
-
-.button {
-    display: grid;
-    background:#4F6D7F;
-    border-radius: 50px;
-    box-shadow: .5px .5px .5px var(--SHADOW-COLOR);
-    color:#000;
-    font-size: 3rem;
-    font-weight: 1000;
-    height: 100%;
-    place-items: center;
-    user-select: none;
-    width: 90%;
-}
-
-.start {
-    font-size: 3rem;
-    grid-area: str; /* str = start button*/
-}
-
-/* .center {
-    position: absolute;
-    left: 50%;
-    top :50%;
-    translate: -50% -50%;
-} */
-
-.button:hover {
-    background:rgba(79, 109, 127, 0.800);
-    cursor: pointer;
-}
-.button:active,.button:focus {
-    scale: 90%;
-}
-.up {
-    grid-area: up;
-}
-
-.up > span {
-    transform: rotate(-90deg);
-}
-
-.left {
-    grid-area: lft;
-}
-
-.left > span {
-    transform: rotate(180deg);
-}
-
-.right {
-    grid-area: rgt;
-}
-
-.down {
-    grid-area: dwn;
-}
-
-.down > span {
-    transform: rotate(90deg);
-}
-
-/* Home section */
 
 .home {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    min-width: 100%;
-    min-height: 90%;
-    top: 80px;
-    font-size: 2rem;
-    color: #000;
-    font-weight: 1000;
-    background: linear-gradient(45deg,var(--BG-COLOR),#0b708f);
+    top:0;
+    left:0;
+    width:360px;
+    height:100%;
+    background: url(./img/3d-render-modern-tech-background-with-extruding-cubes\ \(1\).jpg);
+    background-size: contain;
+    background-repeat: repeat;
 }
 
-.play {
+.home::after {
+    position: absolute;
+    content: 'Snake';
     width: 200px;
     height: 100px;
-    border-radius: 50px;
-    font-size: 2rem;
-    font-family: inherit;
+    font-size: 5rem;
     font-weight: 1000;
-    border: 0;
-    transform: scale(100%);
-    background: #4F6D7F;
-    color: #000000;
-    transition: all .2s linear;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom: 5px double rgb(0, 0, 0);
 }
 
-.play:hover {
-    background: #6f96ae;
-}
-
-.play:active {
-    transform: scale(90%)
-}
-
-.play:focus {
-    border: 2px solid rgba(255, 0, 0, 0.436);
+.select_speed {
+    font-size: 2rem;
+    font-weight: 1000;
+    position: absolute;
+    top:200px;
+    left: 50px;
 }
 
 .speed {
-    width: 150px;
-    height: 60px;
-    border: 0;
-    border-radius: 20px;
-    font-size: 1.6rem;
-    padding-left: 1.5rem;
-}
-
-.no-wrap {
-    flex-wrap: nowrap;
-}
-
-.displaygameover {
-    display: none;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    width: 400px;
-    height: 200px;
-    background:#0b6d8a;
-    border-radius: 20px;
-    outline: 5px double #fffc69;
-    outline-offset: -15px;
-    transform: translateX(-50%);
-}
-
-.black {
-    margin-top: 1rem;
-    color: #fff;
-}
-
-.gameover {
-    width: 130px;
+    background: rgba(0, 0, 0, 0.409);
+    margin-top: 20px;
+    width: 250px;
     height: 50px;
+    font-family: inherit;
+    border: 0;
     font-size: 2rem;
-    border-radius: 3rem;
+    padding-left: 60px;
+    font-weight: 1000;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.speed:hover {
+    background: rgba(0, 0, 0, 0.347);
+    cursor: pointer;
+}
+
+.speed:focus,
+.speed:active {
+    border:0;
+    outline: 0;
+}
+.play {
+    background: rgba(0, 0, 0, 0.438);
+    position: absolute;
+    top: 440px;
+    left:50px;
+    border:0;
+    font-family: inherit;
+    font-weight: 1000;
+    color: #ffffff;
+    font-size: 2rem;
+    width: 250px;
+    height: 50px;
+}
+
+.mode {
+    top:350px;
+}
+
+.play:hover {
+    background: rgba(0, 0, 0, 0.308);
+    cursor: pointer;
+}
+
+.homebutton {
+    position: absolute;
+    top: 78%;
+    left: 20px;
+    font-size: 2rem;
     border: 0;
 }
 
-.centerbutton {
-    height: 45%;
+img {
+    width: 30px;
+    height: 30px;
+}
+
+.image {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 78%;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    background: #0000003f;
+}
+
+.tools {
+    position: absolute;
+    bottom: 60px;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.imgbutton {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.267);
+    border-radius: 5px;
+}
+
+.imgbutton:hover {
+    background: rgba(0, 0, 0, 0.200);
 }

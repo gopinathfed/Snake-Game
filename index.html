@@ -12,27 +12,35 @@
     <title>Snake Game</title>
 </head>
 <body>
-    <header>
-        <h1 class="heading">Snake Game</h1>
+    <header class="heading">
+        <h1>Snake Game</h1>
     </header>
     <main>
         <div class="board-buttons">
-            <div>
-                <p class="score">Score : <span class="show-score">0</span></p>
-            </div>
             <section>
                 <canvas width="300" height="300" class="game-board" id="board"></canvas>
             </section>
             <section class="buttons">
-                <div class="button up"><span>➯</span></div>
-                <div class="button down"><span>➯</span></div>
-                <div class="button start" title="Press Enter key for Reset"><span class="center">↻</span></div>
-                <div class="button left"><span>➯</span></div>
-                <div class="button right"><span>➯</span></div>
+                <div class="button up"><div></div></div>
+                <div class="button right"><div></div></div>
+                <div class="button left"><div></div></div>
+                <div class="button down"><div></div></div>
             </section>
+            <div>
+                <p class="score">Score : <span class="show-score">0</span></p>
+            </div>
+            <div>
+                <div class="button start" title="Press Enter key for Reset"><span class="center">↻</span></div>
+            </div>
+            <div>
+                <button class="button homebutton">🏠</button>
+            </div>
+            <div class="image">
+                <img src="./img/play.png" alt="pause and play button">
+            </div>
         </div>
         <section class="home" id="home">
-            <div class="no-wrap">
+            <div class="select_speed">
                 <label for="speed">Select Speed :</label>
                 <select name="speed" id="speed" class="speed">
                     <option value="100">Hard</option>
@@ -43,15 +51,23 @@
                 <div>
                     <button id="play" class="play">Play</button>
                 </div>
-        </section>
-        <section class="displaygameover">
-            <div>
-                <p class="score black">Score : <span class="show-score2">0</span></p>
-            </div>
-            <div class="centerbutton">
-                <button class="gameover start2">X</button>
-                <button class="gameover homebutton">🏠</button>
-            </div>
+                <div>
+                    <button class="play mode">Mode</button>
+                </div>
+                <div class="tools">
+                    <div class="imgbutton">
+                        <img src="./img/sign-out.png" alt="sign-out image">
+                    </div>
+                    <div class="imgbutton">
+                        <img src="./img/vibrate.png" alt="vibrate image">
+                    </div>
+                    <div class="imgbutton">
+                        <img src="./img/volume.png" alt="volume image">
+                    </div>
+                    <div class="imgbutton">
+                        <img src="./img/palette.png" alt="color palette image">
+                    </div>
+                </div>
         </section>
     </main>
 </body>

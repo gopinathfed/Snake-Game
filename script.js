@@ -6,14 +6,12 @@ const downKey = document.querySelector('.down');
 const leftKey = document.querySelector('.left');
 const rightKey = document.querySelector('.right');
 const startKey = document.querySelector('.start');
-const startKey2 = document.querySelector('.start2');
 const homeButton = document.querySelector('.homebutton');
 
 const score = document.querySelector('.show-score');
-const score2 = document.querySelector('.show-score2');
 const playButton = document.querySelector('.play');
 const home = document.getElementById('home');
-const displayGameOver = document.querySelector('.displaygameover')
+const play = document.querySelector('.image');
 
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height; 
@@ -60,22 +58,28 @@ function playAgain(){
     }
 }
 
-homeButton.addEventListener('click',()=>{
-    home.style.display = 'flex';
-    displayGameOver.style.display = 'none';
-
+play.addEventListener('click',()=>{
+    if(gameStart){
+        gameStart = false;
+    }
+    else {
+        gameStart = true;
+        startGame();
+    }
 })
+
+homeButton.addEventListener('click',()=>{
+    if(!gameStart){
+        home.style.display = 'flex';
+    }
+})
+
 playButton.addEventListener('click',()=>{
     home.style.display = 'none';
 })
 
 startKey.addEventListener('click',()=>{
-    displayGameOver.style.display = 'none';
    playAgain();
-});
-
-startKey2.addEventListener('click',()=>{
-    displayGameOver.style.display = 'none';
 });
 
 upKey.addEventListener('click',()=>{
@@ -121,6 +125,16 @@ rightKey.addEventListener('click',()=>{
 
 window.addEventListener('keydown',(event)=>{
     switch(event.key){
+        case 'p':
+        case 'P':
+            if(gameStart){
+                gameStart = false;
+            }
+            else {
+                gameStart = true;
+                startGame();
+            }
+            break;
         case 'w':
         case 'W':
         case 'ArrowUp':
@@ -162,7 +176,7 @@ window.addEventListener('keydown',(event)=>{
         case 'ArrowRight':
             if(!gameStart){
                 gameStart = true;
-                startGame();
+                drawSnakeRepeatedly();
             }
             if(xDirection != -UNIT){
                 xDirection = UNIT;
@@ -176,16 +190,20 @@ window.addEventListener('keydown',(event)=>{
 })
 
 resetBoard();
+createFood();
 
 function drawSnake(){
     snake.forEach((snakeBody)=>{
         context.fillStyle = "red";
         context.fillRect(snakeBody.x,snakeBody.y,UNIT,UNIT);
+        context.strokeStyle = "rgb(0, 213, 255)";
+        context.rect(snakeBody.x,snakeBody.y,UNIT,UNIT);
+        context.stroke();
     })
 }
 
 function resetBoard(){
-    context.fillStyle = "#56A3A6";
+    context.fillStyle = "rgb(0, 213, 255)";
     context.fillRect(0,0,500,500);
 }
 
@@ -228,7 +246,6 @@ function gameOverWhenSnakeTouchWall(){
 
 function startGame(){
     drawSnake();
-    createFood();
     displayFood();
     drawSnakeRepeatedly();
 }
@@ -266,8 +283,6 @@ function gameOverWhenSnakeTouchItsBody(){
 }
 
 function gameOver(){
-    displayGameOver.style.display = 'block';
-    score2.textContent = scoreValue;
     reset = false;
     gameStart = false;
     resetBoard();
@@ -276,7 +291,7 @@ function gameOver(){
     let fontSize = 40;
     let x = (canvas.width - context.measureText("Game Over").width) / 2;
     let y = (canvas.height + fontSize) / 2;
-    context.fillText("Game Over",x,y); 
+    context.fillText("Game Over",x,y);
 }
 
 function increaseScore(){
