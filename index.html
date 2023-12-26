@@ -8,37 +8,10 @@
     <meta name="description" content="Simple Snake Game using HTML CSS and JavaScript.">
     <link rel="icon" href="./img/video_game.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer type="text/javascript"></script>
     <title>Snake Game</title>
 </head>
 <body>
-    <header class="heading">
-        <h1>Snake Game</h1>
-    </header>
     <main>
-        <div class="board-buttons">
-            <section>
-                <canvas width="300" height="300" class="game-board" id="board"></canvas>
-            </section>
-            <section class="buttons">
-                <div class="button up"><div></div></div>
-                <div class="button right"><div></div></div>
-                <div class="button left"><div></div></div>
-                <div class="button down"><div></div></div>
-            </section>
-            <div>
-                <p class="score">Score : <span class="show-score">0</span></p>
-            </div>
-            <div>
-                <div class="button start" title="Press Enter key for Reset"><span class="center">↻</span></div>
-            </div>
-            <div>
-                <button class="button homebutton">🏠</button>
-            </div>
-            <div class="image">
-                <img src="./img/play.png" alt="pause and play button">
-            </div>
-        </div>
         <section class="home" id="home">
             <div class="select_speed">
                 <label for="speed">Select Speed :</label>
@@ -49,10 +22,10 @@
                 </select>
                 </div>
                 <div>
-                    <button id="play" class="play">Play</button>
+                   <a href="game.html" target="_self"><div id="play" class="play">Play</div></a>
                 </div>
                 <div>
-                    <button class="play mode">Mode</button>
+                    <div class="play mode">Mode</div>
                 </div>
                 <div class="tools">
                     <div class="imgbutton">
@@ -69,6 +42,7 @@
                     </div>
                 </div>
         </section>
+    </main>
     </main>
 </body>
 </html>

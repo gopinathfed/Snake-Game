@@ -68,16 +68,6 @@ play.addEventListener('click',()=>{
     }
 })
 
-homeButton.addEventListener('click',()=>{
-    if(!gameStart){
-        home.style.display = 'flex';
-    }
-})
-
-playButton.addEventListener('click',()=>{
-    home.style.display = 'none';
-})
-
 startKey.addEventListener('click',()=>{
    playAgain();
 });
